@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useInView, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import MobileNav from "./components/MobileNav.jsx";
 import Preloader from "./components/Preloader.jsx";
 import ScrollTicker from "./components/ScrollTicker.jsx";
 import SocialLinks from "./components/SocialLinks.jsx";
@@ -289,6 +290,7 @@ export default function App() {
               FAQ
             </MagneticLink>
           </nav>
+          <MobileNav />
         </header>
 
         <main>

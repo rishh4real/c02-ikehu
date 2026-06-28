@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import MobileNav from "../components/MobileNav.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
 import { useTextScramble } from "../hooks/useTextScramble.js";
 
@@ -264,6 +265,7 @@ export default function About() {
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
         </nav>
+        <MobileNav />
       </header>
 
       <main>

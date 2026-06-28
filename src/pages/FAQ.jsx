@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import MobileNav from "../components/MobileNav.jsx";
 import WordMorph from "../components/WordMorph.jsx";
 
 const ease = [0.25, 0.1, 0.25, 1];
@@ -124,6 +125,7 @@ export default function FAQ() {
           <a className="nav-link" href="/contact">Contact</a>
           <a className="nav-link" href="/faq">FAQ</a>
         </nav>
+        <MobileNav />
       </header>
 
       <main>
