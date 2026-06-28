@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import logo from "../../assets/ikehu-logo-transparent.png";
+
+const logo = "/assets/ikehu-logo-transparent.png";
 
 export default function Preloader({ onComplete }) {
   const curtainEase = [0.76, 0, 0.24, 1];
