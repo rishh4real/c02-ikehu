@@ -4,11 +4,28 @@ import { useEffect, useState } from "react";
 export default function CustomCursor() {
   const springX = useSpring(0, { stiffness: 200, damping: 20 });
   const springY = useSpring(0, { stiffness: 200, damping: 20 });
+  const [enabled, setEnabled] = useState(false);
   const [theme, setTheme] = useState("light");
   const [active, setActive] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)");
+    const updateEnabled = () => setEnabled(mediaQuery.matches);
+
+    updateEnabled();
+    mediaQuery.addEventListener("change", updateEnabled);
+
+    return () => mediaQuery.removeEventListener("change", updateEnabled);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) {
+      setVisible(false);
+      setActive(false);
+      return undefined;
+    }
+
     const handleMove = (event) => {
       springX.set(event.clientX);
       springY.set(event.clientY);
@@ -38,7 +55,11 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("mouseout", handleLeave);
     };
-  }, [springX, springY]);
+  }, [enabled, springX, springY]);
+
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <motion.div

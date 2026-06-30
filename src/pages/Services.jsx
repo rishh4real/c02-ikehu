@@ -246,7 +246,7 @@ export default function Services() {
         </a>
         <nav className="main-nav">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About</NavLink>
+          <NavLink href="/about">The Team</NavLink>
           <NavLink href="/services">Services</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
@@ -328,7 +328,7 @@ export default function Services() {
         </motion.section>
 
         <div className="services-bottom-strip" data-cursor-theme="dark">
-          <a href="/about">&larr; About</a>
+          <a href="/about">&larr; The Team</a>
           <a href="/contact">Contact &rarr;</a>
         </div>
       </main>

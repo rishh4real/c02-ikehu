@@ -148,6 +148,7 @@ function ContactForm({ type }) {
 export default function Contact() {
   const [solidHeader, setSolidHeader] = useState(false);
   const [scrambleEnabled, setScrambleEnabled] = useState(false);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const headlineOne = useTextScramble("Let's start a", {
     duration: 900,
     interval: 35,
@@ -186,7 +187,7 @@ export default function Contact() {
         </a>
         <nav className="main-nav">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About</NavLink>
+          <NavLink href="/about">The Team</NavLink>
           <NavLink href="/services">Services</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
@@ -215,7 +216,7 @@ export default function Contact() {
         <section className="contact-paths" data-cursor-theme="dark">
           <motion.div
             className="contact-path"
-            initial={{ opacity: 0, x: -48 }}
+            initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease }}
@@ -237,7 +238,7 @@ export default function Contact() {
 
           <motion.div
             className="contact-path"
-            initial={{ opacity: 0, x: 48 }}
+            initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease }}
@@ -308,7 +309,7 @@ export default function Contact() {
         <motion.section
           className="contact-find"
           data-cursor-theme="dark"
-          initial={{ opacity: 0, y: 42 }}
+          initial={{ opacity: 0, y: isMobile ? 20 : 42 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease }}

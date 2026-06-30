@@ -2,7 +2,6 @@ import { AnimatePresence, motion, useInView, useMotionValue, useScroll, useSprin
 import { useEffect, useRef, useState } from "react";
 import MobileNav from "./components/MobileNav.jsx";
 import Preloader from "./components/Preloader.jsx";
-import ScrollTicker from "./components/ScrollTicker.jsx";
 import SocialLinks from "./components/SocialLinks.jsx";
 import WordMorph from "./components/WordMorph.jsx";
 import About from "./pages/About.jsx";
@@ -12,6 +11,46 @@ import Services from "./pages/Services.jsx";
 import { useTextScramble } from "./hooks/useTextScramble.js";
 
 const ease = [0.25, 0.1, 0.25, 1];
+
+const homeWhyItems = [
+  {
+    title: "We Build For You",
+    description:
+      "We stay close to the business, the context, and the people so every search is shaped around what you are building.",
+  },
+  {
+    title: "Insights, not just Search.",
+    description: "We help you understand the market before you decide, not after.",
+  },
+];
+
+const homeWorkSteps = [
+  {
+    title: "Understand Deeply",
+    description: "Business context, ambition, leadership style",
+  },
+  {
+    title: "Build Thoughtfully",
+    description: "Calibrated, high-touch search execution",
+  },
+  {
+    title: "Partner Honestly",
+    description: "Transparent conversations on what works",
+  },
+  {
+    title: "Stay Human",
+    description: "Candidates are people, not profiles",
+  },
+];
+
+const homeWhoItems = [
+  "Founder-led Businesses",
+  "Growth Stage Start-Ups",
+  "Investors & Portfolio Companies",
+  "Teams Building Leadership Capability",
+  "Businesses in Transition / Scale-Up Mode",
+  "Mature Companies that need Fresh Talent",
+];
 
 function MagneticLink({ href, className, children, inline = false, onClick }) {
   const ref = useRef(null);
@@ -23,6 +62,13 @@ function MagneticLink({ href, className, children, inline = false, onClick }) {
   useEffect(() => {
     const element = ref.current;
     if (!element) {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)");
+    if (!mediaQuery.matches) {
+      x.set(0);
+      y.set(0);
       return undefined;
     }
 
@@ -88,10 +134,12 @@ function AnimatedText({ chars, className = "" }) {
 }
 
 function FadeUpSection({ className = "", children }) {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <motion.section
       className={className}
-      initial={{ opacity: 0, y: 48 }}
+      initial={{ opacity: 0, y: isMobile ? 20 : 48 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.7, ease }}
@@ -101,21 +149,47 @@ function FadeUpSection({ className = "", children }) {
   );
 }
 
-function LetterPolishHeading({ text }) {
-  return <h2 className="story-polish-heading">{text}</h2>;
+function HomeSectionLabel({ label, dark = false }) {
+  return (
+    <div className={`about-v2-section-label ${dark ? "is-dark" : ""}`}>
+      <span>{label}</span>
+      <div className="about-v2-section-line" />
+    </div>
+  );
 }
 
-function WhyRow({ title, description, delay }) {
+function HomeWhyItem({ title, description, delay }) {
   return (
     <motion.article
-      className="why-row"
-      initial={{ opacity: 0, y: 28 }}
+      className="about-v2-why-item"
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.6, ease, delay }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.55, ease, delay }}
     >
       <h3>{title}</h3>
       <p>{description}</p>
+    </motion.article>
+  );
+}
+
+function HomeWorkStep({ index, title, description }) {
+  return (
+    <motion.article
+      className="about-v2-step"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.28 }}
+      transition={{ duration: 0.55, ease, delay: index * 0.15 }}
+    >
+      <div className="about-v2-step-rail">
+        <div className="about-v2-step-number">{index + 1}</div>
+        {index < homeWorkSteps.length - 1 && <div className="about-v2-step-line" />}
+      </div>
+      <div className="about-v2-step-copy">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
     </motion.article>
   );
 }
@@ -136,13 +210,13 @@ export default function App() {
     interval: 35,
     enabled: scrambleEnabled,
   });
-  const lineOne = useTextScramble("where talent", {
+  const lineOne = useTextScramble("We", {
     duration: 900,
     startDelay: 0,
     interval: 35,
     enabled: scrambleEnabled,
   });
-  const lineTwo = useTextScramble("meets purpose.", {
+  const lineTwo = useTextScramble("are listening", {
     duration: 900,
     startDelay: 0,
     interval: 35,
@@ -278,7 +352,7 @@ export default function App() {
               Home
             </MagneticLink>
             <MagneticLink href="/about" onClick={navigate("/about")} className="nav-link">
-              About
+              The Team
             </MagneticLink>
             <MagneticLink href="/services" onClick={navigate("/services")} className="nav-link">
               Services
@@ -300,24 +374,19 @@ export default function App() {
                 <AnimatedText chars={label.output} className="hero-label" />
                 <div className="hero-copy">
                   <motion.p
-                    className="hero-line"
+                    className="hero-line hero-line-single"
                     initial={{ opacity: 0, y: 60 }}
                     animate={heroInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8, delay: 0.2, ease }}
                   >
                     <AnimatedText chars={lineOne.output} />
-                  </motion.p>
-                  <motion.p
-                    className="hero-line"
-                    initial={{ opacity: 0, y: 60 }}
-                    animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.55, ease }}
-                  >
+                    <span className="hero-inline-space"> </span>
                     {startMorph ? (
-                      <>
-                        <span>meets </span>
-                        <WordMorph start={startMorph} />
-                      </>
+                      <WordMorph
+                        start={startMorph}
+                        targetWords={["are listening", "are here", "understand"]}
+                        live
+                      />
                     ) : (
                       <AnimatedText chars={lineTwo.output} />
                     )}
@@ -327,102 +396,114 @@ export default function App() {
             </div>
           </section>
 
-          <ScrollTicker />
-
           <FadeUpSection className="story-block story-what" data-cursor-theme="dark">
             <div className="story-grid">
               <div className="story-statement">
-                <LetterPolishHeading text="Ikehu is a founder-led talent advisory firm built for founders, investors, and ambitious professionals who want hiring and career decisions to feel more deliberate, more human, and better informed." />
+                <h2>
+                  At Ikehu, we&apos;re not building Search as a business. We are viewing it with a
+                  strong Product lens.
+                </h2>
               </div>
               <div className="story-detail">
                 <p>
-                  We are not a large agency. We don't work with everyone. We work with the people
-                  and companies where we can make a real difference.
+                  One that is founder-led, deeply involved, and genuinely invested in helping
+                  businesses build capability, culture, and leadership.
                 </p>
                 <p>
-                  For companies in build-up or transition mode. For talent navigating growth,
-                  change, and reinvention.
+                  We work with fewer clients but would love to work in depth with them.
+                </p>
+                <p>
+                  We work at the intersection of executive search, talent advisory, and talent
+                  intelligence, partnering with Business Owners, CEOs, and leadership teams on
+                  critical hiring and organizational decisions.
                 </p>
               </div>
             </div>
           </FadeUpSection>
 
-          <FadeUpSection className="story-block story-why" data-cursor-theme="light">
-            <div className="story-container">
-              <p className="section-label">Why Ikehu</p>
-              <h2 className="section-headline">
-                Not a vendor.
-                <br />
-                A partner.
-              </h2>
-              <div className="why-list">
-                <WhyRow
-                  delay={0}
-                  title="Relationships over process."
-                  description="We build on deep relationships across industries, teams, and moments of change."
-                />
-                <WhyRow
-                  delay={0.15}
-                  title="Precision over volume."
-                  description="We don't flood you with CVs. We bring you the right person, with context."
-                />
-                <WhyRow
-                  delay={0.3}
-                  title="Intelligence, not just search."
-                  description="We help you understand the market before you decide, not after."
-                />
+          <FadeUpSection className="about-v2-why home-team-section home-team-section-yellow">
+            <div className="about-v2-shell">
+              <HomeSectionLabel label="Why We Work" dark />
+              <div className="about-v2-why-grid">
+                {homeWhyItems.map((item, index) => (
+                  <HomeWhyItem
+                    key={item.title}
+                    title={item.title}
+                    description={item.description}
+                    delay={index * 0.15}
+                  />
+                ))}
               </div>
             </div>
           </FadeUpSection>
 
-          <section className="story-block story-founder" data-cursor-theme="dark">
-            <div className="story-founder-grid">
-              <motion.div
-                className="founder-copy"
-                initial={{ opacity: 0, x: -56 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.7, ease }}
-              >
-                <p className="section-label founder-label">The Founder</p>
-                <p className="founder-name">Svetleena</p>
-                <p className="founder-title">Founder, Ikehu — The Talent Edit</p>
-                <blockquote className="founder-quote">
-                  I built Ikehu because I believe hiring and career decisions deserve more care,
-                  more intelligence, and more honesty than the industry typically offers.
-                </blockquote>
-                <p className="founder-note">
-                  Svetleena brings decades of executive search experience across startups,
-                  investors, and leadership teams.
-                </p>
-                <MagneticLink href="/contact" onClick={navigate("/contact")} className="founder-cta" inline>
-                  Get in Touch &rarr;
-                </MagneticLink>
-              </motion.div>
-
-              <motion.div
-                className="founder-visual"
-                initial={{ opacity: 0, x: 56 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, ease }}
-              >
-                <img
-                  src="/assets/svety.jpg"
-                  alt="Svetleena portrait"
-                  className="founder-photo"
-                />
-              </motion.div>
+          <FadeUpSection className="about-v2-work home-team-section home-team-section-black">
+            <div className="about-v2-work-grid">
+              <div className="about-v2-work-left">
+                <h2>
+                  How
+                  <br />
+                  We
+                  <br />
+                  Work
+                </h2>
+              </div>
+              <div className="about-v2-work-right">
+                {homeWorkSteps.map((step, index) => (
+                  <HomeWorkStep
+                    key={step.title}
+                    index={index}
+                    title={step.title}
+                    description={step.description}
+                  />
+                ))}
+              </div>
             </div>
-          </section>
+          </FadeUpSection>
+
+          <FadeUpSection className="about-v2-who home-team-section home-team-section-yellow">
+            <div className="about-v2-shell">
+              <HomeSectionLabel label="Who We Work With" dark />
+              <div className="about-v2-who-grid">
+                {homeWhoItems.map((item) => (
+                  <div key={item} className="about-v2-who-item">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeUpSection>
+
         </main>
 
         <footer ref={footerRef} className="site-footer-premium" data-cursor-theme="dark">
           <p>Ikehu</p>
           <SocialLinks className="footer-socials" />
-          <div className="footer-mails">
-            <a href="mailto:svetleena@ikehu.in">Svetleena@ikehu.in</a>
-            <a href="mailto:abhigyan@ikehu.in">abhigyan@ikehu.in</a>
+          <div className="footer-contacts">
+            <div>
+              <strong>Svetleena</strong>
+              <a href="mailto:svetleena@ikehu.in">svetleena@ikehu.in</a>
+              <a href="tel:+919971134096">+91 99711 34096</a>
+              <a
+                href="https://www.linkedin.com/in/svetleena-choudhary-4b25b94/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
+            <div>
+              <strong>Abhigyan</strong>
+              <a href="mailto:abhigyan@ikehu.in">abhigyan@ikehu.in</a>
+              <a href="tel:+919811322327">+91 98113 22327</a>
+              <a
+                href="https://www.linkedin.com/in/abhigyanshekhar/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
           <p>&copy; 2026 Ikehu</p>
         </footer>

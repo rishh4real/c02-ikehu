@@ -6,96 +6,6 @@ import { useTextScramble } from "../hooks/useTextScramble.js";
 
 const ease = [0.25, 0.1, 0.25, 1];
 
-const whyItems = [
-  {
-    title: "Bandwidth Gap",
-    description:
-      "Startups and growth-stage businesses often struggle with strategic hiring bandwidth.",
-  },
-  {
-    title: "Accessible Search",
-    description: "Traditional search models are often inaccessible in terms of cost.",
-  },
-  {
-    title: "People First",
-    description:
-      "Hiring is capability building and culture shaping. It is not transactional.",
-  },
-  {
-    title: "Founder-Led",
-    description: "Small is beautiful for us. A founder-led search firm, product first.",
-  },
-];
-
-const workSteps = [
-  {
-    title: "Understand Deeply",
-    description: "Business context, ambition, leadership style",
-  },
-  {
-    title: "Build Thoughtfully",
-    description: "Calibrated, high-touch search execution",
-  },
-  {
-    title: "Partner Honestly",
-    description: "Transparent conversations on what works",
-  },
-  {
-    title: "Stay Human",
-    description: "Candidates are people, not profiles",
-  },
-];
-
-const whoWeWorkWith = [
-  "Founder-led Businesses",
-  "Growth Stage Start-Ups",
-  "Investors & Portfolio Companies",
-  "Teams Building Leadership Capability",
-  "Businesses in Transition / Scale-Up Mode",
-  "Mature Companies that need Fresh Talent",
-];
-
-const featuredExperience = [
-  { name: "BharatPe", logo: "/assets/company-logos/bharatpe.png" },
-  { name: "Razorpay", logo: "/assets/company-logos/razorpay.png" },
-  { name: "Jubilant FoodWorks", logo: "/assets/company-logos/jubilant-foodworks.png" },
-  { name: "Pidilite", logo: "/assets/company-logos/pidilite.png" },
-  { name: "HT Media Group", logo: "/assets/company-logos/ht-media-group.png" },
-  { name: "Dr. Reddy's", logo: "/assets/company-logos/dr-reddys.png" },
-  { name: "Hotstar", logo: "/assets/company-logos/hotstar.png" },
-  { name: "Schneider Electric", logo: "/assets/company-logos/schneider-electric.png" },
-  { name: "Disney", logo: "/assets/company-logos/disney.png" },
-  { name: "Star", logo: "/assets/company-logos/star.png" },
-];
-
-const additionalExperience = [
-  "Fireside Ventures",
-  "ChrysCapital",
-  "Peak XV",
-  "Philips",
-  "Colgate",
-  "Livguard",
-  "Flipkart",
-  "Kellanova",
-  "Nicobar",
-  "Kapiva",
-  "Zomato",
-  "Eureka Forbes",
-  "Avery Dennison",
-  "GeneClinix",
-  "Pocket FM",
-  "Baidyanath Vansaar",
-  "Nexus Venture Partners",
-  "Paytm",
-  "AkzoNobel",
-  "Kedaara",
-  "Oliva",
-  "Cargill",
-  "Kohler",
-  "Luxor",
-  "Royal Enfield",
-];
-
 function NavLink({ href, children }) {
   return (
     <motion.a
@@ -124,82 +34,6 @@ function FadeUpSection({ className = "", children }) {
   );
 }
 
-function SectionLabel({ label, dark = false }) {
-  return (
-    <div className={`about-v2-section-label ${dark ? "is-dark" : ""}`}>
-      <span>{label}</span>
-      <div className="about-v2-section-line" />
-    </div>
-  );
-}
-
-function WhyItem({ title, description, delay }) {
-  return (
-    <motion.article
-      className="about-v2-why-item"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.55, ease, delay }}
-    >
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </motion.article>
-  );
-}
-
-function WorkStep({ index, title, description }) {
-  return (
-    <motion.article
-      className="about-v2-step"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.28 }}
-      transition={{ duration: 0.55, ease, delay: index * 0.15 }}
-    >
-      <div className="about-v2-step-rail">
-        <div className="about-v2-step-number">{index + 1}</div>
-        {index < workSteps.length - 1 && <div className="about-v2-step-line" />}
-      </div>
-      <div className="about-v2-step-copy">
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-    </motion.article>
-  );
-}
-
-function LogoTile({ item, index }) {
-  return (
-    <motion.article
-      className="about-v2-logo-card"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.4, ease, delay: index * 0.03 }}
-    >
-      <div className="about-v2-logo-box">
-        <img src={item.logo} alt={`${item.name} logo`} className="about-v2-logo-image" />
-      </div>
-      <p>{item.name}</p>
-    </motion.article>
-  );
-}
-
-function CompanyChip({ name, index }) {
-  return (
-    <motion.span
-      className="about-v2-company-chip"
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.35, ease, delay: index * 0.025 }}
-    >
-      {name}
-    </motion.span>
-  );
-}
-
 function ScrambleLine({ chars }) {
   return (
     <span className="about-v2-scramble-line" aria-label={chars.join("")}>
@@ -217,6 +51,7 @@ export default function About() {
   const [ambitionEnabled, setAmbitionEnabled] = useState(false);
   const ambitionRef = useRef(null);
   const ambitionInView = useInView(ambitionRef, { once: true, amount: 0.45 });
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const ambitionLineOne = useTextScramble("To Become", {
     duration: 900,
@@ -260,7 +95,7 @@ export default function About() {
         </a>
         <nav className="main-nav">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About</NavLink>
+          <NavLink href="/about">The Team</NavLink>
           <NavLink href="/services">Services</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
@@ -271,7 +106,7 @@ export default function About() {
       <main>
         <section className="about-v2-hero">
           <div className="about-v2-hero-inner">
-            <p className="about-v2-hero-label">About</p>
+            <p className="about-v2-hero-label">The Team</p>
             <div className="about-v2-hero-copy">
               <h1>
                 We are Ikehu.
@@ -279,8 +114,8 @@ export default function About() {
                 The Talent Edit.
               </h1>
               <p>
-                A founder-led talent search and advisory firm. Built on relationships, run with
-                intention.
+                Building teams is personal. We treat it that way. Ikehu is a boutique talent
+                advisory firm partnering with companies to build thought, leadership and teams.
               </p>
             </div>
           </div>
@@ -290,7 +125,7 @@ export default function About() {
           <div className="about-v2-person-grid">
             <motion.div
               className="about-v2-photo-wrap"
-              initial={{ opacity: 0, x: -48 }}
+              initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -304,12 +139,21 @@ export default function About() {
 
             <motion.div
               className="about-v2-person-copy"
-              initial={{ opacity: 0, x: 48 }}
+              initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
             >
-              <p className="about-v2-person-name is-yellow">I'm Svety.</p>
+              <p className="about-v2-person-name is-yellow">
+                Svety /{" "}
+                <a
+                  href="https://www.linkedin.com/in/svetleena-choudhary-4b25b94/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Svetleena
+                </a>
+              </p>
               <p className="about-v2-person-role">Founder, Ikehu</p>
               <a
                 className="about-v2-profile-link"
@@ -321,21 +165,19 @@ export default function About() {
               </a>
               <div className="about-v2-stat-row">
                 <span>25+ Years of Experience</span>
-                <span>17+ Years in Talent &amp; Search</span>
               </div>
               <div className="about-v2-person-text">
                 <p>
-                  I proudly call myself a Search Value Alum — 17 years building leadership teams,
-                  relationships, and talent strategy across industries and growth stages.
+                  Building leadership teams and critical hires across Business, Sales, Marketing,
+                  Operations, SCM, HR and more — in India and internationally.
                 </p>
                 <p>
-                  I&apos;ve placed talent across Business, Sales, Marketing, Operations, SCM, HR
-                  and more — in India and internationally.
+                  I am a certified coach and believe getting to know yourself is the most
+                  fascinating experience.
                 </p>
                 <p>
-                  Before search, I worked in Advertising at Lintas and Marketing at adidas, where
-                  I led Media &amp; CRM. That background shapes how I think about people, brands,
-                  and fit.
+                  Love writing, run an entrepreneurial food business on the side. Love cooking
+                  &amp; feeding. Have more than one story for my name.
                 </p>
               </div>
             </motion.div>
@@ -346,7 +188,7 @@ export default function About() {
           <div className="about-v2-person-grid reverse">
             <motion.div
               className="about-v2-person-copy"
-              initial={{ opacity: 0, x: -48 }}
+              initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -363,7 +205,7 @@ export default function About() {
               </a>
               <div className="about-v2-stat-row is-dark">
                 <span>25+ Years of Experience</span>
-                <span>10+ Years Entrepreneurial &amp; Operating</span>
+                <span>Operating &amp; Entrepreneurial, Digital Evangelist</span>
               </div>
               <div className="about-v2-person-text is-dark">
                 <p>
@@ -375,12 +217,16 @@ export default function About() {
                   His expertise spans business leadership, revenue monetisation, digital
                   transformation, and starting up new ventures.
                 </p>
+                <p>
+                  Am a magic realist. Exploring food, culture and technology in this world. Can
+                  play and watch sports anytime.
+                </p>
               </div>
             </motion.div>
 
             <motion.div
               className="about-v2-photo-wrap"
-              initial={{ opacity: 0, x: 48 }}
+              initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -394,75 +240,48 @@ export default function About() {
           </div>
         </FadeUpSection>
 
-        <FadeUpSection className="about-v2-why">
-          <div className="about-v2-shell">
-            <SectionLabel label="Why We Exist" />
-            <div className="about-v2-why-grid">
-              {whyItems.map((item, index) => (
-                <WhyItem
-                  key={item.title}
-                  title={item.title}
-                  description={item.description}
-                  delay={index * 0.15}
-                />
-              ))}
-            </div>
-          </div>
-        </FadeUpSection>
+        <FadeUpSection className="about-v2-person about-v2-person-lucky">
+          <div className="about-v2-person-grid">
+            <motion.div
+              className="about-v2-photo-wrap"
+              initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, ease }}
+            >
+              <img
+                src="/assets/lucky-pandey.png"
+                alt="Lucky Pandey portrait"
+                className="about-v2-person-photo about-v2-person-photo-lucky"
+              />
+            </motion.div>
 
-        <FadeUpSection className="about-v2-work">
-          <div className="about-v2-work-grid">
-            <div className="about-v2-work-left">
-              <h2>
-                How
-                <br />
-                We
-                <br />
-                Work
-              </h2>
-            </div>
-            <div className="about-v2-work-right">
-              {workSteps.map((step, index) => (
-                <WorkStep
-                  key={step.title}
-                  index={index}
-                  title={step.title}
-                  description={step.description}
-                />
-              ))}
-            </div>
-          </div>
-        </FadeUpSection>
-
-        <FadeUpSection className="about-v2-who">
-          <div className="about-v2-shell">
-            <SectionLabel label="Who We Work With" />
-            <div className="about-v2-who-grid">
-              {whoWeWorkWith.map((item) => (
-                <div key={item} className="about-v2-who-item">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeUpSection>
-
-        <FadeUpSection className="about-v2-logos">
-          <div className="about-v2-logos-inner">
-            <p className="about-v2-logos-label">Over 17 Years, Svety Has Personally Hired For</p>
-            <p className="about-v2-logos-note">
-              These are Svety&apos;s personal past placements from previous role, not Ikehu clients.
-            </p>
-            <div className="about-v2-logo-grid">
-              {featuredExperience.map((item, index) => (
-                <LogoTile key={item.name} item={item} index={index} />
-              ))}
-            </div>
-            <div className="about-v2-company-list">
-              {additionalExperience.map((company, index) => (
-                <CompanyChip key={company} name={company} index={index} />
-              ))}
-            </div>
+            <motion.div
+              className="about-v2-person-copy"
+              initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, ease }}
+            >
+              <p className="about-v2-person-name is-yellow">I&apos;m Lucky.</p>
+              <p className="about-v2-person-role">Research Associate</p>
+              <a
+                className="about-v2-profile-link"
+                href="https://www.linkedin.com/in/lucky-pandey-55a6a747/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn Profile &rarr;
+              </a>
+              <div className="about-v2-person-text">
+                <p>
+                  Ikehu is my second coming. I have returned to work after some years of a break I
+                  took for my child.
+                </p>
+                <p>I believe in second chances, opportunity and research.</p>
+                <p>Love baking, dancing and travelling.</p>
+              </div>
+            </motion.div>
           </div>
         </FadeUpSection>
 
@@ -483,38 +302,6 @@ export default function About() {
           </motion.div>
         </section>
 
-        <section className="about-v2-contact-strip">
-          <p className="about-v2-contact-heading">Would love to start the conversation</p>
-          <div className="about-v2-contact-grid">
-            <div className="about-v2-contact-person">
-              <a href="mailto:svetleena@ikehu.in">svetleena@ikehu.in</a>
-              <span>·</span>
-              <a href="tel:+919971134096">+91 99711 34096</a>
-              <span>·</span>
-              <a
-                href="https://www.linkedin.com/in/svetleena-choudhary-4b25b94/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
-            <div className="about-v2-contact-person">
-              <a href="mailto:abhigyan@ikehu.in">abhigyan@ikehu.in</a>
-              <span>·</span>
-              <a href="tel:+919811322327">+91 98113 22327</a>
-              <span>·</span>
-              <a
-                href="https://www.linkedin.com/in/abhigyanshekhar/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </section>
-
         <div className="about-v2-bottom-strip">
           <a href="/" className="about-v2-bottom-link">
             &larr; Home
@@ -527,9 +314,31 @@ export default function About() {
         <footer className="site-footer-premium" data-cursor-theme="dark">
           <p>Ikehu</p>
           <SocialLinks className="footer-socials" />
-          <div className="footer-mails">
-            <a href="mailto:svetleena@ikehu.in">Svetleena@ikehu.in</a>
-            <a href="mailto:abhigyan@ikehu.in">abhigyan@ikehu.in</a>
+          <div className="footer-contacts">
+            <div>
+              <strong>Svetleena</strong>
+              <a href="mailto:svetleena@ikehu.in">svetleena@ikehu.in</a>
+              <a href="tel:+919971134096">+91 99711 34096</a>
+              <a
+                href="https://www.linkedin.com/in/svetleena-choudhary-4b25b94/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
+            <div>
+              <strong>Abhigyan</strong>
+              <a href="mailto:abhigyan@ikehu.in">abhigyan@ikehu.in</a>
+              <a href="tel:+919811322327">+91 98113 22327</a>
+              <a
+                href="https://www.linkedin.com/in/abhigyanshekhar/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
           <p>&copy; 2026 Ikehu</p>
         </footer>
