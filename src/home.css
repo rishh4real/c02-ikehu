@@ -172,7 +172,7 @@ video {
 
 .brand-text {
   font-family: "Playfair Display", serif;
-  font-size: 2.08rem;
+  font-size: clamp(2.35rem, 3vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -238,7 +238,7 @@ video {
 .hero-line {
   margin: 0;
   font-family: "Playfair Display", serif;
-  font-size: clamp(4rem, 7vw, 88px);
+  font-size: clamp(5.2rem, 8.6vw, 112px);
   font-weight: 300;
   letter-spacing: -0.04em;
   line-height: 0.92;
@@ -1439,9 +1439,9 @@ video {
 
 .about-v2-section-label span {
   color: var(--yellow);
-  font-size: 12px;
+  font-size: clamp(14px, 1.15vw, 17px);
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -3090,7 +3090,7 @@ video {
   }
 
   .brand-text {
-    font-size: 20px;
+    font-size: 23px;
     letter-spacing: -0.01em;
   }
 
@@ -3177,7 +3177,7 @@ video {
   .hero-line,
   .hero-line-single {
     max-width: 100%;
-    font-size: clamp(36px, 10vw, 56px);
+    font-size: clamp(44px, 12vw, 68px);
     line-height: 1.04;
     letter-spacing: -0.035em;
   }
