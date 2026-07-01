@@ -232,14 +232,15 @@ export default function App() {
     if (normalized === "/contact.html") return "/contact";
     if (normalized === "/faq.html") return "/faq";
     if (normalized === "/company.html") return "/about";
-    if (normalized === "/offerings.html") return "/services";
+    if (normalized === "/offerings.html" || normalized === "/services") return "/for-companies";
     return normalized;
   };
   const [route, setRoute] = useState(normalizePath(window.location.pathname));
   const isAbout = route === "/about";
   const isFaq = route === "/faq";
   const isContact = route === "/contact";
-  const isServices = route === "/services";
+  const isForCompanies = route === "/for-companies";
+  const isForTalent = route === "/for-talent";
 
   useEffect(() => {
     const handlePopstate = () => setRoute(normalizePath(window.location.pathname));
@@ -277,7 +278,15 @@ export default function App() {
       if (url.origin !== window.location.origin) return;
 
       const next = normalizePath(url.pathname);
-      const internalRoutes = new Set(["/", "/about", "/services", "/contact", "/faq"]);
+      const internalRoutes = new Set([
+        "/",
+        "/about",
+        "/for-companies",
+        "/for-talent",
+        "/services",
+        "/contact",
+        "/faq",
+      ]);
       if (!internalRoutes.has(next)) return;
 
       event.preventDefault();
@@ -310,7 +319,12 @@ export default function App() {
 
   const headerVisible =
     !loading &&
-    (isAbout || isFaq || isContact || isServices || (label.done && lineOne.done && lineTwo.done));
+    (isAbout ||
+      isFaq ||
+      isContact ||
+      isForCompanies ||
+      isForTalent ||
+      (label.done && lineOne.done && lineTwo.done));
 
   return (
     <>
@@ -319,8 +333,10 @@ export default function App() {
       <AnimatePresence mode="wait">
         {isContact ? (
           <Contact key="contact" />
-        ) : isServices ? (
-          <Services key="services" />
+        ) : isForCompanies ? (
+          <Services key="for-companies" audience="companies" />
+        ) : isForTalent ? (
+          <Services key="for-talent" audience="talent" />
         ) : isFaq ? (
           <FAQ key="faq" />
         ) : isAbout ? (
@@ -354,8 +370,19 @@ export default function App() {
             <MagneticLink href="/about" onClick={navigate("/about")} className="nav-link">
               The Team
             </MagneticLink>
-            <MagneticLink href="/services" onClick={navigate("/services")} className="nav-link">
-              Services
+            <MagneticLink
+              href="/for-companies"
+              onClick={navigate("/for-companies")}
+              className="nav-link"
+            >
+              For Companies
+            </MagneticLink>
+            <MagneticLink
+              href="/for-talent"
+              onClick={navigate("/for-talent")}
+              className="nav-link"
+            >
+              For Talent
             </MagneticLink>
             <MagneticLink href="/contact" onClick={navigate("/contact")} className="nav-link">
               Contact

@@ -121,7 +121,8 @@ export default function FAQ() {
         <nav className="main-nav">
           <a className="nav-link" href="/">Home</a>
           <a className="nav-link" href="/about">The Team</a>
-          <a className="nav-link" href="/services">Services</a>
+          <a className="nav-link" href="/for-companies">For Companies</a>
+          <a className="nav-link" href="/for-talent">For Talent</a>
           <a className="nav-link" href="/contact">Contact</a>
           <a className="nav-link" href="/faq">FAQ</a>
         </nav>

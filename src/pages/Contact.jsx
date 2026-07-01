@@ -188,7 +188,8 @@ export default function Contact() {
         <nav className="main-nav">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/about">The Team</NavLink>
-          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/for-companies">For Companies</NavLink>
+          <NavLink href="/for-talent">For Talent</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
         </nav>
@@ -335,7 +336,7 @@ export default function Contact() {
         </motion.section>
 
         <div className="contact-bottom-strip" data-cursor-theme="dark">
-          <a href="/services">&larr; Services</a>
+          <a href="/for-talent">&larr; For Talent</a>
           <a href="/faq">FAQ &rarr;</a>
         </div>
       </main>

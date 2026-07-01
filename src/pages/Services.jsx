@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import MobileNav from "../components/MobileNav.jsx";
 import { useTextScramble } from "../hooks/useTextScramble.js";
@@ -127,93 +127,106 @@ function SectionLabel({ children }) {
   );
 }
 
-function ServiceRow({ item, index, isOpen, onToggle }) {
+const pageContent = {
+  companies: {
+    label: "For Companies",
+    headlineOne: "For companies.",
+    headlineTwo: "Build with care.",
+    copy:
+      "For founders, investors, CEOs, and leadership teams making critical hiring and organisational decisions.",
+    items: companyServices,
+    groupLabel: "How we help companies",
+    previous: { href: "/about", label: "The Team" },
+    next: { href: "/for-talent", label: "For Talent" },
+    startLinks: [
+      {
+        href: "mailto:svetleena@ikehu.in?subject=Company%20Conversation",
+        label: "Start a Company Conversation",
+      },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+  talent: {
+    label: "For Talent",
+    headlineOne: "For talent.",
+    headlineTwo: "Move with context.",
+    copy:
+      "For ambitious professionals navigating growth, change, reinvention, and the work they want to be known for.",
+    items: talentServices,
+    groupLabel: "How we help talent",
+    previous: { href: "/for-companies", label: "For Companies" },
+    next: { href: "/contact", label: "Contact" },
+    startLinks: [
+      {
+        href: "mailto:abhigyan@ikehu.in?subject=Talent%20Conversation",
+        label: "Start a Talent Conversation",
+      },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+};
+
+function ServiceRow({ item, index }) {
   return (
     <motion.article
-      className={`services-row ${isOpen ? "is-open" : ""}`}
+      className="services-row is-open is-static"
       initial={{ opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease, delay: index * 0.1 }}
     >
-      <button className="services-row-button" type="button" onClick={onToggle}>
+      <div className="services-row-button">
         <span className="services-row-number">{item.number}</span>
         <span className="services-row-main">
           <span>{item.title}</span>
           <small>{item.summary}</small>
         </span>
-        <motion.span
-          className="services-row-icon"
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ type: "spring", stiffness: 200, damping: 25 }}
-        >
-          +
-        </motion.span>
-      </button>
+      </div>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            className="services-row-panel"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 200, damping: 25 }}
-          >
-            <div className="services-row-panel-inner">
-              <ul>
-                {item.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-              <blockquote>{item.quote}</blockquote>
-            </div>
-            <a
-              className="services-row-cta"
-              href={`mailto:${item.email}?subject=${encodeURIComponent(item.subject)}`}
-            >
-              {item.cta} &rarr;
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="services-row-panel">
+        <div className="services-row-panel-inner">
+          <ul>
+            {item.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+          <blockquote>{item.quote}</blockquote>
+        </div>
+        <a
+          className="services-row-cta"
+          href={`mailto:${item.email}?subject=${encodeURIComponent(item.subject)}`}
+        >
+          {item.cta} &rarr;
+        </a>
+      </div>
     </motion.article>
   );
 }
 
-function ServicesGroup({ label, items, openId, setOpenId, prefix }) {
+function ServicesGroup({ label, items }) {
   return (
     <section className="services-list-section" data-cursor-theme="dark">
       <div className="services-shell">
         <SectionLabel>{label}</SectionLabel>
         <div className="services-accordion">
-          {items.map((item, index) => {
-            const id = `${prefix}-${index}`;
-            return (
-              <ServiceRow
-                key={item.title}
-                item={item}
-                index={index}
-                isOpen={openId === id}
-                onToggle={() => setOpenId(openId === id ? null : id)}
-              />
-            );
-          })}
+          {items.map((item, index) => (
+            <ServiceRow key={item.title} item={item} index={index} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-export default function Services() {
+export default function Services({ audience = "companies" }) {
   const [solidHeader, setSolidHeader] = useState(false);
   const [scrambleEnabled, setScrambleEnabled] = useState(false);
-  const [openId, setOpenId] = useState("company-0");
-  const headlineOne = useTextScramble("What we do.", {
+  const page = pageContent[audience] || pageContent.companies;
+  const headlineOne = useTextScramble(page.headlineOne, {
     duration: 900,
     interval: 35,
     enabled: scrambleEnabled,
   });
-  const headlineTwo = useTextScramble("How we help.", {
+  const headlineTwo = useTextScramble(page.headlineTwo, {
     duration: 900,
     startDelay: 140,
     interval: 35,
@@ -247,7 +260,8 @@ export default function Services() {
         <nav className="main-nav">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/about">The Team</NavLink>
-          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/for-companies">For Companies</NavLink>
+          <NavLink href="/for-talent">For Talent</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
         </nav>
@@ -257,46 +271,18 @@ export default function Services() {
       <main>
         <section className="services-hero" data-cursor-theme="light">
           <div className="services-hero-inner">
-            <p className="services-hero-label">Services</p>
+            <p className="services-hero-label">{page.label}</p>
             <div>
               <h1>
                 <ScrambleLine chars={headlineOne.output} />
                 <ScrambleLine chars={headlineTwo.output} />
               </h1>
-              <p>
-                We work across three areas for companies, and three areas for talent. High-touch,
-                founder-friendly, and built around your specific context.
-              </p>
+              <p>{page.copy}</p>
             </div>
           </div>
         </section>
 
-        <ServicesGroup
-          label="For Companies"
-          items={companyServices}
-          openId={openId}
-          setOpenId={setOpenId}
-          prefix="company"
-        />
-
-        <section className="services-ticker" data-cursor-theme="light">
-          <div className="services-ticker-track">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <span key={index}>
-                FOR COMPANIES · TALENT SEARCH · TALENT PARTNERING · TALENT INTELLIGENCE · FOR
-                TALENT · PERSONAL BRAND · SEARCH SUPPORT · COACHING ·
-              </span>
-            ))}
-          </div>
-        </section>
-
-        <ServicesGroup
-          label="For Talent"
-          items={talentServices}
-          openId={openId}
-          setOpenId={setOpenId}
-          prefix="talent"
-        />
+        <ServicesGroup label={page.groupLabel} items={page.items} />
 
         <motion.section
           className="services-start"
@@ -317,19 +303,18 @@ export default function Services() {
               We&apos;ll figure out the rest together.
             </p>
             <div className="services-start-actions">
-              <a href="mailto:svetleena@ikehu.in?subject=Getting%20Started%20-%20Company">
-                I&apos;m a Company &rarr;
-              </a>
-              <a href="mailto:abhigyan@ikehu.in?subject=Getting%20Started%20-%20Talent">
-                I&apos;m Talent &rarr;
-              </a>
+              {page.startLinks.map((link) => (
+                <a key={link.href} href={link.href}>
+                  {link.label} &rarr;
+                </a>
+              ))}
             </div>
           </div>
         </motion.section>
 
         <div className="services-bottom-strip" data-cursor-theme="dark">
-          <a href="/about">&larr; The Team</a>
-          <a href="/contact">Contact &rarr;</a>
+          <a href={page.previous.href}>&larr; {page.previous.label}</a>
+          <a href={page.next.href}>{page.next.label} &rarr;</a>
         </div>
       </main>
     </motion.div>

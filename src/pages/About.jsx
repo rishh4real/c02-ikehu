@@ -96,7 +96,8 @@ export default function About() {
         <nav className="main-nav">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/about">The Team</NavLink>
-          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/for-companies">For Companies</NavLink>
+          <NavLink href="/for-talent">For Talent</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/faq">FAQ</NavLink>
         </nav>
@@ -306,8 +307,8 @@ export default function About() {
           <a href="/" className="about-v2-bottom-link">
             &larr; Home
           </a>
-          <a href="/services" className="about-v2-bottom-link">
-            Services &rarr;
+          <a href="/for-companies" className="about-v2-bottom-link">
+            For Companies &rarr;
           </a>
         </div>
 

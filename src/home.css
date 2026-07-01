@@ -172,7 +172,7 @@ video {
 
 .brand-text {
   font-family: "Playfair Display", serif;
-  font-size: 1.85rem;
+  font-size: 2.08rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -188,7 +188,7 @@ video {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: clamp(1rem, 1.55vw, 1.55rem);
 }
 
 .mobile-nav {
@@ -196,9 +196,9 @@ video {
 }
 
 .nav-link {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -1439,8 +1439,8 @@ video {
 
 .about-v2-section-label span {
   color: var(--yellow);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -1475,14 +1475,14 @@ video {
   margin: 0 0 0.5rem;
   color: var(--off-white);
   font-family: "Playfair Display", serif;
-  font-size: 22px;
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
   font-weight: 300;
 }
 
 .about-v2-why-item p {
   margin: 0;
   color: #888;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -1549,14 +1549,14 @@ video {
   margin: 0 0 0.35rem;
   color: var(--black);
   font-family: "Playfair Display", serif;
-  font-size: 20px;
+  font-size: clamp(1.55rem, 2vw, 1.9rem);
   font-weight: 300;
 }
 
 .about-v2-step-copy p {
   margin: 0;
   color: var(--muted-dark);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -1571,7 +1571,7 @@ video {
   border-left: 3px solid var(--yellow);
   background: transparent;
   color: var(--off-white);
-  font-size: 18px;
+  font-size: clamp(1.25rem, 1.6vw, 1.55rem);
   line-height: 1.5;
   transition: background-color 0.25s ease;
 }
@@ -2710,6 +2710,10 @@ video {
   text-align: left;
 }
 
+.services-row.is-static .services-row-button {
+  grid-template-columns: 7rem minmax(0, 1fr);
+}
+
 .services-row-number {
   color: rgba(245, 241, 230, 0.08);
   font-family: "Playfair Display", serif;
@@ -2726,7 +2730,7 @@ video {
 .services-row-main span {
   color: var(--off-white);
   font-family: "Playfair Display", serif;
-  font-size: clamp(2.1rem, 4vw, 36px);
+  font-size: clamp(2.45rem, 4.6vw, 46px);
   font-weight: 300;
   line-height: 1.05;
 }
@@ -2947,6 +2951,10 @@ video {
     grid-template-columns: 5rem minmax(0, 1fr) 2rem;
   }
 
+  .services-row.is-static .services-row-button {
+    grid-template-columns: 5rem minmax(0, 1fr);
+  }
+
   .services-row-number {
     font-size: 60px;
   }
@@ -2990,6 +2998,10 @@ video {
   .services-row-button {
     grid-template-columns: 1fr 2rem;
     gap: 1rem;
+  }
+
+  .services-row.is-static .services-row-button {
+    grid-template-columns: 1fr;
   }
 
   .services-row-number {
@@ -3078,7 +3090,7 @@ video {
   }
 
   .brand-text {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: -0.01em;
   }
 
@@ -3435,6 +3447,10 @@ video {
     gap: 0.85rem;
     min-height: 92px;
     padding: 24px 0;
+  }
+
+  .services-row.is-static .services-row-button {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
   }
 
   .services-row-number {
