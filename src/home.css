@@ -172,9 +172,10 @@ video {
 
 .brand-text {
   font-family: "Playfair Display", serif;
-  font-size: clamp(2.35rem, 3vw, 3rem);
+  font-size: clamp(4rem, 5.2vw, 5.8rem);
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 0.85;
   color: var(--black);
 }
 
@@ -204,7 +205,7 @@ video {
 
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 75vh;
   padding: 0 7vw;
   display: flex;
   align-items: center;
@@ -305,20 +306,30 @@ video {
 
 .story-block {
   position: relative;
-  padding: 7.5rem 7vw;
+  padding: 4.5rem 7vw 7rem;
   overflow: hidden;
 }
 
 .story-what {
-  min-height: 72vh;
+  min-height: 58vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .story-what .story-grid {
   width: min(1180px, 100%);
   margin: 0 auto;
-  transform: translateY(4vh);
+  display: block;
+  transform: none;
+}
+
+.story-what .story-statement {
+  max-width: 820px;
+}
+
+.story-what .story-detail {
+  max-width: 760px;
+  margin-top: 2rem;
 }
 
 .story-what,
@@ -1322,11 +1333,14 @@ video {
 }
 
 .about-v2-person-photo {
-  width: min(100%, 300px);
+  width: min(100%, 320px);
+  height: 320px;
   aspect-ratio: 1 / 1;
   display: block;
   object-fit: cover;
+  border-radius: 28px;
   filter: grayscale(15%);
+  clip-path: inset(0 round 28px);
 }
 
 .about-v2-person-photo-abhigyan {
@@ -1911,7 +1925,8 @@ video {
 
   .about-v2-person-photo {
     width: min(100%, 280px);
-    max-height: 320px;
+    height: 280px;
+    max-height: none;
   }
 
   .about-v2-stat-row span + span::before {
@@ -2781,6 +2796,10 @@ video {
   padding: 0 0 1.7rem 8.5rem;
 }
 
+.services-row-panel-inner.no-quote {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .services-row-panel ul {
   display: grid;
   gap: 0.55rem;
@@ -3110,7 +3129,7 @@ video {
   }
 
   .brand-text {
-    font-size: 23px;
+    font-size: 36px;
     letter-spacing: -0.01em;
   }
 
@@ -3173,7 +3192,7 @@ video {
   }
 
   .hero-section {
-    min-height: 100vh;
+    min-height: 75vh;
     padding: 92px var(--mobile-pad) max(72px, env(safe-area-inset-bottom));
     align-items: center;
   }
@@ -3339,7 +3358,8 @@ video {
   .about-v2-person-photo,
   .founder-photo {
     width: min(100%, 260px);
-    max-height: 300px;
+    height: 260px;
+    max-height: none;
     aspect-ratio: 1 / 1;
     object-fit: cover;
   }

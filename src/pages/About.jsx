@@ -21,10 +21,12 @@ function NavLink({ href, children }) {
 }
 
 function FadeUpSection({ className = "", children }) {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <motion.section
       className={className}
-      initial={{ opacity: 0, y: 42 }}
+      initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 20 : 42 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.7, ease }}
@@ -48,11 +50,24 @@ function ScrambleLine({ chars }) {
 
 export default function About() {
   const [solidHeader, setSolidHeader] = useState(false);
+  const [heroEnabled, setHeroEnabled] = useState(false);
   const [ambitionEnabled, setAmbitionEnabled] = useState(false);
   const ambitionRef = useRef(null);
   const ambitionInView = useInView(ambitionRef, { once: true, amount: 0.45 });
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
+  const heroLineOne = useTextScramble("We are Ikehu.", {
+    duration: 900,
+    startDelay: 0,
+    interval: 35,
+    enabled: heroEnabled,
+  });
+  const heroLineTwo = useTextScramble("The Talent Edit.", {
+    duration: 900,
+    startDelay: 140,
+    interval: 35,
+    enabled: heroEnabled,
+  });
   const ambitionLineOne = useTextScramble("To Become", {
     duration: 900,
     startDelay: 0,
@@ -67,13 +82,17 @@ export default function About() {
   });
 
   useEffect(() => {
+    const timer = window.setTimeout(() => setHeroEnabled(true), 150);
     const handleScroll = () => {
       setSolidHeader(window.scrollY > 24);
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -110,9 +129,8 @@ export default function About() {
             <p className="about-v2-hero-label">The Team</p>
             <div className="about-v2-hero-copy">
               <h1>
-                We are Ikehu.
-                <br />
-                The Talent Edit.
+                <ScrambleLine chars={heroLineOne.output} />
+                <ScrambleLine chars={heroLineTwo.output} />
               </h1>
               <p>
                 Building teams is personal. We treat it that way. Ikehu is a boutique talent
@@ -126,7 +144,7 @@ export default function About() {
           <div className="about-v2-person-grid">
             <motion.div
               className="about-v2-photo-wrap"
-              initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
+              initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? -20 : -48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -140,7 +158,7 @@ export default function About() {
 
             <motion.div
               className="about-v2-person-copy"
-              initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
+              initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 20 : 48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -189,7 +207,7 @@ export default function About() {
           <div className="about-v2-person-grid reverse">
             <motion.div
               className="about-v2-person-copy"
-              initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
+              initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? -20 : -48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -210,13 +228,8 @@ export default function About() {
               </div>
               <div className="about-v2-person-text is-dark">
                 <p>
-                  Abhigyan brings deep operator experience across Media, Digital, and Sports — with
-                  stints at Google, Hotstar, Viacom18, Disney, World Sport Group, and GroupM (WPP
-                  Media).
-                </p>
-                <p>
-                  His expertise spans business leadership, revenue monetisation, digital
-                  transformation, and starting up new ventures.
+                  Deep operator experience across Media, Digital, and Sports — with stints at
+                  Google, Hotstar, Viacom18, Disney, World Sport Group, and GroupM (WPP Media).
                 </p>
                 <p>
                   Am a magic realist. Exploring food, culture and technology in this world. Can
@@ -227,7 +240,7 @@ export default function About() {
 
             <motion.div
               className="about-v2-photo-wrap"
-              initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
+              initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 20 : 48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -245,7 +258,7 @@ export default function About() {
           <div className="about-v2-person-grid">
             <motion.div
               className="about-v2-photo-wrap"
-              initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
+              initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? -20 : -48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}
@@ -259,7 +272,7 @@ export default function About() {
 
             <motion.div
               className="about-v2-person-copy"
-              initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
+              initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 20 : 48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease }}

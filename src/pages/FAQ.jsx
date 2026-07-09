@@ -13,7 +13,7 @@ const faqData = {
     },
     {
       q: "Who are the people behind Ikehu?",
-      a: "Ikehu is led by Svetleena and Abhigyan. Svetleena brings 17+ years of executive search experience across industries. Abhigyan brings 25+ years of operator experience across Media, Digital, and Sports.",
+      a: "Ikehu is led by Svetleena and Abhigyan, supported by a small research team. The work is founder-led, high-touch, and deeply involved.",
     },
     {
       q: "Is Ikehu a large agency?",
@@ -31,11 +31,11 @@ const faqData = {
     },
     {
       q: "What makes Ikehu different from a traditional search firm?",
-      a: "We don't flood you with CVs. We work closely with you as partners — sometimes running a search, sometimes helping you define what's actually needed first.",
+      a: "We work closely with you as partners — sometimes running a search, sometimes helping you define what's actually needed first.",
     },
     {
-      q: "Do you work with early-stage startups?",
-      a: "Yes. We specifically work with founder-led businesses, growth-stage startups, and companies in transition or scale-up mode.",
+      q: "Do You also work with early-stage startups?",
+      a: "Yes. We love to work with founder-led businesses, growth-stage startups, and companies in transition or scale-up mode.",
     },
     {
       q: "How do we get started?",

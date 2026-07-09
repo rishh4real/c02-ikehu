@@ -16,30 +16,24 @@ const companyServices = [
       "Precision-driven, high-touch execution",
       "Business-critical mandates",
     ],
-    quote: "We don't flood you with CVs.\nWe bring you the right person,\nwith context.",
-    cta: "Enquire about Talent Search",
     email: "svetleena@ikehu.in",
     subject: "Talent Search Enquiry",
   },
   {
     number: "02",
-    title: "Talent Partnering",
-    summary: "Helping you think through what to hire, when, and why.",
-    bullets: ["Org Design", "Hiring Strategy", "Leadership Assessment", "Scaling Teams"],
-    quote: "Sometimes that means running\na search. Sometimes it means\nstepping back first.",
-    cta: "Enquire about Talent Partnering",
-    email: "svetleena@ikehu.in",
-    subject: "Talent Partnering Enquiry",
-  },
-  {
-    number: "03",
     title: "Talent Intelligence",
     summary: "Giving you a clear view of the market before you decide.",
     bullets: ["Market Mapping", "Compensation Benchmarking", "Talent Landscape Insights"],
-    quote: "Understand the market\nbefore you make decisions,\nnot after.",
-    cta: "Enquire about Talent Intelligence",
     email: "svetleena@ikehu.in",
     subject: "Talent Intelligence Enquiry",
+  },
+  {
+    number: "03",
+    title: "Talent Partnering",
+    summary: "Helping you think through what to hire, when, and why.",
+    bullets: ["Org Design", "Hiring Strategy", "Leadership Assessment", "Scaling Teams"],
+    email: "svetleena@ikehu.in",
+    subject: "Talent Partnering Enquiry",
   },
 ];
 
@@ -54,9 +48,6 @@ const talentServices = [
       "Articulating what you've really done",
       "Unified messaging strategy",
     ],
-    quote:
-      "Most people have done far\nmore than what shows on\ntheir CV. It just hasn't been\narticulated well.",
-    cta: "Talk to us about Personal Brand",
     email: "abhigyan@ikehu.in",
     subject: "Personal Brand Enquiry",
   },
@@ -70,8 +61,6 @@ const talentServices = [
       "Connecting you selectively to teams we know deeply",
       "Only where there's genuine fit",
     ],
-    quote: "Not the next title.\nThe right context.",
-    cta: "Talk to us about Search Support",
     email: "abhigyan@ikehu.in",
     subject: "Search Support Enquiry",
   },
@@ -85,8 +74,6 @@ const talentServices = [
       "Growth, change, and reinvention support",
       "When decisions are not straightforward",
     ],
-    quote: "So the right people don't\nhave to work hard to see\nyour value or potential.",
-    cta: "Talk to us about Coaching",
     email: "abhigyan@ikehu.in",
     subject: "Coaching Enquiry",
   },
@@ -138,13 +125,7 @@ const pageContent = {
     groupLabel: "How we help companies",
     previous: { href: "/about", label: "The Team" },
     next: { href: "/for-talent", label: "For Talent" },
-    startLinks: [
-      {
-        href: "mailto:svetleena@ikehu.in?subject=Company%20Conversation",
-        label: "Start a Company Conversation",
-      },
-      { href: "/contact", label: "Contact" },
-    ],
+    startLinks: [{ href: "/contact", label: "Get in touch" }],
   },
   talent: {
     label: "For Talent",
@@ -156,13 +137,7 @@ const pageContent = {
     groupLabel: "How we help talent",
     previous: { href: "/for-companies", label: "For Companies" },
     next: { href: "/contact", label: "Contact" },
-    startLinks: [
-      {
-        href: "mailto:abhigyan@ikehu.in?subject=Talent%20Conversation",
-        label: "Start a Talent Conversation",
-      },
-      { href: "/contact", label: "Contact" },
-    ],
+    startLinks: [{ href: "/contact", label: "Get in touch" }],
   },
 };
 
@@ -183,20 +158,14 @@ function ServiceRow({ item, index }) {
       </div>
 
       <div className="services-row-panel">
-        <div className="services-row-panel-inner">
+        <div className={`services-row-panel-inner ${item.quote ? "" : "no-quote"}`}>
           <ul>
             {item.bullets.map((bullet) => (
               <li key={bullet}>{bullet}</li>
             ))}
           </ul>
-          <blockquote>{item.quote}</blockquote>
+          {item.quote && <blockquote>{item.quote}</blockquote>}
         </div>
-        <a
-          className="services-row-cta"
-          href={`mailto:${item.email}?subject=${encodeURIComponent(item.subject)}`}
-        >
-          {item.cta} &rarr;
-        </a>
       </div>
     </motion.article>
   );

@@ -139,7 +139,7 @@ function FadeUpSection({ className = "", children }) {
   return (
     <motion.section
       className={className}
-      initial={{ opacity: 0, y: isMobile ? 20 : 48 }}
+      initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 20 : 48 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.7, ease }}
@@ -159,10 +159,12 @@ function HomeSectionLabel({ label, dark = false }) {
 }
 
 function HomeWhyItem({ title, description, delay }) {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <motion.article
       className="about-v2-why-item"
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 16 : 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.55, ease, delay }}
@@ -174,10 +176,12 @@ function HomeWhyItem({ title, description, delay }) {
 }
 
 function HomeWorkStep({ index, title, description }) {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <motion.article
       className="about-v2-step"
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 16 : 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.28 }}
       transition={{ duration: 0.55, ease, delay: index * 0.15 }}
@@ -223,9 +227,7 @@ export default function App() {
     enabled: scrambleEnabled,
   });
   const heroRef = useRef(null);
-  const footerRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.45 });
-  const footerInView = useInView(footerRef, { amount: 0.25 });
 
   const normalizePath = (path) => {
     const normalized = path.replace(/\/+$|\/index\.html$/i, "") || "/";
@@ -503,7 +505,7 @@ export default function App() {
 
         </main>
 
-        <footer ref={footerRef} className="site-footer-premium" data-cursor-theme="dark">
+        <footer className="site-footer-premium" data-cursor-theme="dark">
           <p>Ikehu</p>
           <SocialLinks className="footer-socials" />
           <div className="footer-contacts">
@@ -534,14 +536,6 @@ export default function App() {
           </div>
           <p>&copy; 2026 Ikehu</p>
         </footer>
-        <MagneticLink
-          href="/contact"
-          onClick={navigate("/contact")}
-          className={`floating-cta ${footerInView ? "is-hidden" : ""}`}
-          inline
-        >
-          Book a Meet
-        </MagneticLink>
       </motion.div>
         )}
       </AnimatePresence>

@@ -217,7 +217,7 @@ export default function Contact() {
         <section className="contact-paths" data-cursor-theme="dark">
           <motion.div
             className="contact-path"
-            initial={{ opacity: 0, x: isMobile ? -20 : -48 }}
+            initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? -20 : -48 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease }}
@@ -239,7 +239,7 @@ export default function Contact() {
 
           <motion.div
             className="contact-path"
-            initial={{ opacity: 0, x: isMobile ? 20 : 48 }}
+            initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 20 : 48 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease }}
@@ -263,7 +263,7 @@ export default function Contact() {
           <div className="contact-direct-grid">
             <motion.div
               className="contact-person"
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 16 : 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, ease }}
@@ -279,14 +279,13 @@ export default function Contact() {
               >
                 LinkedIn Profile &rarr;
               </a>
-              <p className="contact-note">For company and hiring enquiries</p>
             </motion.div>
 
             <div className="contact-direct-divider" />
 
             <motion.div
               className="contact-person"
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 16 : 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, ease, delay: 0.2 }}
@@ -302,7 +301,6 @@ export default function Contact() {
               >
                 LinkedIn Profile &rarr;
               </a>
-              <p className="contact-note">For talent and career enquiries</p>
             </motion.div>
           </div>
         </section>
@@ -310,7 +308,7 @@ export default function Contact() {
         <motion.section
           className="contact-find"
           data-cursor-theme="dark"
-          initial={{ opacity: 0, y: isMobile ? 20 : 42 }}
+          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 20 : 42 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease }}
