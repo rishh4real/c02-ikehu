@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useInView, useMotionValue, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import MobileNav from "./components/MobileNav.jsx";
 import Preloader from "./components/Preloader.jsx";
@@ -226,9 +226,6 @@ export default function App() {
     interval: 35,
     enabled: scrambleEnabled,
   });
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true, amount: 0.45 });
-
   const normalizePath = (path) => {
     const normalized = path.replace(/\/+$|\/index\.html$/i, "") || "/";
     if (normalized === "/contact.html") return "/contact";
@@ -397,7 +394,7 @@ export default function App() {
         </header>
 
         <main>
-          <section className="hero-section" ref={heroRef} data-cursor-hidden>
+          <section className="hero-section" data-cursor-hidden>
             <div className="hero-inner">
               <div className="hero-copy-wrap">
                 <AnimatedText chars={label.output} className="hero-label" />
@@ -405,7 +402,7 @@ export default function App() {
                   <motion.p
                     className="hero-line hero-line-single"
                     initial={{ opacity: 0, y: 60 }}
-                    animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease }}
                   >
                     <AnimatedText chars={lineOne.output} />
