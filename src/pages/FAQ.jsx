@@ -21,7 +21,7 @@ const faqData = {
     },
     {
       q: "Where is Ikehu based?",
-      a: "We are based in India and work across geographies.",
+      a: "We are based in Gurugram, India, and are open to working with people and companies worldwide.",
     },
   ],
   companies: [
@@ -39,7 +39,7 @@ const faqData = {
     },
     {
       q: "How do we get started?",
-      a: "Reach out via our contact page or email svetleena@ikehu.in. We start with a conversation — no forms, no pitches.",
+      a: "Reach out via our contact page or email svetleena@ikehu.in / abhigyan@ikehu.in. We start with a conversation — no forms, no pitches.",
     },
   ],
   talent: [
@@ -57,7 +57,7 @@ const faqData = {
     },
     {
       q: "How do I get in touch?",
-      a: "Email abhigyan@ikehu.in or reach out via our contact page.",
+      a: "Email svetleena@ikehu.in / abhigyan@ikehu.in or reach out via our contact page.",
     },
   ],
 };
@@ -193,8 +193,11 @@ export default function FAQ() {
             We'd love to talk. No pitch, just a conversation.
           </p>
           <div className="faq-cta-links">
-            <a href="mailto:svetleena@ikehu.in" className="faq-cta-link">
-              Email us →
+            <a
+              href="mailto:svetleena@ikehu.in,abhigyan@ikehu.in"
+              className="faq-cta-link"
+            >
+              Email us: Svetleena / Abhigyan →
             </a>
             <a href="/contact" className="faq-cta-link">
               Go to Contact →
