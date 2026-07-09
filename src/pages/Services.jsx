@@ -11,10 +11,10 @@ const companyServices = [
     title: "Talent Search",
     summary: "Finding the right people for roles that really matter.",
     bullets: [
-      "CXO / Leadership Hiring",
+      "CXO / Leadership / Business Critical Hiring",
       "Team Build-Up & Scaling",
       "Precision-driven, high-touch execution",
-      "Business-critical mandates",
+      "Guided Coaching Support during Onboarding",
     ],
     email: "svetleena@ikehu.in",
     subject: "Talent Search Enquiry",
@@ -40,19 +40,6 @@ const companyServices = [
 const talentServices = [
   {
     number: "01",
-    title: "Personal Brand",
-    summary: "Before anything else, we spend time understanding you.",
-    bullets: [
-      "Brand Discovery - who you are, what you want",
-      "Crafting your narrative across LinkedIn & collaterals",
-      "Articulating what you've really done",
-      "Unified messaging strategy",
-    ],
-    email: "abhigyan@ikehu.in",
-    subject: "Personal Brand Enquiry",
-  },
-  {
-    number: "02",
     title: "Search Support",
     summary: "Identifying contexts where you will do your best work.",
     bullets: [
@@ -65,7 +52,7 @@ const talentServices = [
     subject: "Search Support Enquiry",
   },
   {
-    number: "03",
+    number: "02",
     title: "Coaching",
     summary: "Working through inflection points - growth, change, reinvention.",
     bullets: [
@@ -132,7 +119,7 @@ const pageContent = {
     headlineOne: "For talent.",
     headlineTwo: "Move with context.",
     copy:
-      "For ambitious professionals navigating growth, change, reinvention, and the work they want to be known for.",
+      "For professionals navigating growth, change, reinvention, and the work they want to be known for.",
     items: talentServices,
     groupLabel: "How we help talent",
     previous: { href: "/for-companies", label: "For Companies" },

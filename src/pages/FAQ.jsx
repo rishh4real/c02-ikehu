@@ -9,7 +9,7 @@ const faqData = {
   general: [
     {
       q: "What is Ikehu?",
-      a: "Ikehu is a founder-led talent advisory firm built for founders, investors, and ambitious professionals. We operate at the intersection of search, strategic advisory, and talent intelligence.",
+      a: "Ikehu is a founder-led talent advisory firm built for founders, investors, and professionals. We operate at the intersection of search, strategic advisory, and talent intelligence.",
     },
     {
       q: "Who are the people behind Ikehu?",
@@ -27,7 +27,7 @@ const faqData = {
   companies: [
     {
       q: "What kind of roles does Ikehu help hire for?",
-      a: "We focus on leadership and business-critical mandates — CXO hiring, team build-up, and scaling. Precision-driven and high-touch, not high-volume.",
+      a: "We focus on CXO / Leadership / Business Critical Hiring, team build-up, scaling, and guided coaching support during onboarding. Precision-driven and high-touch, not high-volume.",
     },
     {
       q: "What makes Ikehu different from a traditional search firm?",
@@ -45,11 +45,7 @@ const faqData = {
   talent: [
     {
       q: "I'm a professional looking for my next role. Can Ikehu help?",
-      a: "Yes. We work with ambitious professionals navigating growth, change, and reinvention — helping identify the right context, not just the next title.",
-    },
-    {
-      q: "What does the personal brand service involve?",
-      a: "We start by understanding who you are and what you've really done. Then we help craft a compelling narrative across LinkedIn and professional collaterals. Most people have done far more than their CV shows.",
+      a: "Yes. We work with professionals navigating growth, change, and reinvention — helping identify the right context, not just the next title.",
     },
     {
       q: "Is this a job placement service?",
