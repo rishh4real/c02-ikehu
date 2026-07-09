@@ -354,7 +354,7 @@ export default function About() {
               </a>
             </div>
           </div>
-          <p>&copy; 2026 Ikehu</p>
+          <p>&copy; 2026 Ikehu Consult LLP</p>
         </footer>
       </main>
     </motion.div>

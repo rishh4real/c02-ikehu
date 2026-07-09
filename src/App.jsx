@@ -440,7 +440,7 @@ export default function App() {
                 </p>
                 <p>
                   We work at the intersection of executive search, talent advisory, and talent
-                  intelligence, partnering with Business Owners, CEOs, and leadership teams on
+                  intelligence, partnering with Business Owners, Founders, CEOs, and leadership teams on
                   critical hiring and organizational decisions.
                 </p>
               </div>
@@ -531,7 +531,7 @@ export default function App() {
               </a>
             </div>
           </div>
-          <p>&copy; 2026 Ikehu</p>
+          <p>&copy; 2026 Ikehu Consult LLP</p>
         </footer>
       </motion.div>
         )}
