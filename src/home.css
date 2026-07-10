@@ -1288,15 +1288,6 @@ video {
   margin-top: 1.35rem;
 }
 
-.about-v2-hero-ambition span {
-  color: var(--muted-dark);
-  font-family: "Inter", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
 .about-v2-hero-ambition strong {
   color: var(--black);
   font-family: "Playfair Display", serif;

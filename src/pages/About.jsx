@@ -104,8 +104,7 @@ export default function About() {
                 <ScrambleLine chars={heroLineOne.output} />
               </h1>
               <div className="about-v2-hero-ambition">
-                <span>Ikehu&apos;s Ambition</span>
-                <strong>To Become a Verb.</strong>
+                <strong>Ikehu ambition is to become a verb.</strong>
                 <em>Have you been Ikehu-ed?</em>
               </div>
             </div>
