@@ -72,7 +72,6 @@ const talentServices = [
       "Navigating trade-offs across role, scope, compensation",
       "Acting as a sounding board for complex decisions",
       "Growth, change, and reinvention support",
-      "When decisions are not straightforward",
     ],
     email: "abhigyan@ikehu.in",
     subject: "Coaching Enquiry",

@@ -27,7 +27,7 @@ const faqData = {
   companies: [
     {
       q: "What kind of roles does Ikehu help hire for?",
-      a: "We focus on CXO / Leadership / Business Critical Hiring, team build-up, scaling, and guided coaching support during onboarding. Precision-driven and high-touch, not high-volume.",
+      a: "We focus on CXO / Leadership / Business Critical Hiring, team build-up, scaling, and guided coaching support during onboarding.",
     },
     {
       q: "What makes Ikehu different from a traditional search firm?",
