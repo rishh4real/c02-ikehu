@@ -164,7 +164,7 @@ export default function About() {
               transition={{ duration: 0.7, ease }}
             >
               <p className="about-v2-person-name is-yellow">
-                Svety /{" "}
+                I&apos;m{" "}
                 <a
                   href="https://www.linkedin.com/in/svetleena-choudhary-4b25b94/"
                   target="_blank"
@@ -172,6 +172,7 @@ export default function About() {
                 >
                   Svetleena
                 </a>
+                . Call me Svety.
               </p>
               <p className="about-v2-person-role">Founder, Ikehu</p>
               <a
@@ -228,12 +229,13 @@ export default function About() {
               </div>
               <div className="about-v2-person-text is-dark">
                 <p>
-                  Deep operator experience across Media, Digital, and Sports — with stints at
-                  Google, Hotstar, Viacom18, Disney, World Sport Group, and GroupM (WPP Media).
+                  Deep operator experience across Media, Digital, and Sports. With stints at
+                  Google, Jio Hotstar, World Sport Group, and GroupM (WPP Media).
                 </p>
                 <p>
-                  Am a magic realist. Exploring food, culture and technology in this world. Can
-                  play and watch sports anytime.
+                  Am a magic realist. Exploring food, culture and technology in this world. I
+                  also run a sports business called Zupotsu. Can play and watch sports anytime,
+                  sometimes together.
                 </p>
               </div>
             </motion.div>

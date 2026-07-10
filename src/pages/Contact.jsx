@@ -6,19 +6,6 @@ import { useTextScramble } from "../hooks/useTextScramble.js";
 
 const ease = [0.25, 0.1, 0.25, 1];
 
-const emptyHiring = {
-  name: "",
-  company: "",
-  role: "",
-  message: "",
-};
-
-const emptyTalent = {
-  name: "",
-  background: "",
-  message: "",
-};
-
 function NavLink({ href, children }) {
   return (
     <motion.a
@@ -42,106 +29,6 @@ function ScrambleLine({ chars }) {
         </span>
       ))}
     </span>
-  );
-}
-
-function ContactForm({ type }) {
-  const isHiring = type === "hiring";
-  const [formData, setFormData] = useState(isHiring ? emptyHiring : emptyTalent);
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((current) => ({ ...current, [name]: value }));
-    setErrors((current) => ({ ...current, [name]: false }));
-  };
-
-  const flashErrors = (nextErrors) => {
-    setErrors(nextErrors);
-    window.setTimeout(() => setErrors({}), 900);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const nextErrors = {};
-    Object.entries(formData).forEach(([key, value]) => {
-      if (!value.trim()) {
-        nextErrors[key] = true;
-      }
-    });
-
-    if (Object.keys(nextErrors).length) {
-      flashErrors(nextErrors);
-      return;
-    }
-
-    const email = isHiring ? "svetleena@ikehu.in" : "abhigyan@ikehu.in";
-    const subject = isHiring
-      ? `Hiring Enquiry from ${formData.name} - ${formData.company}`
-      : `Talent Enquiry from ${formData.name}`;
-    const body = isHiring
-      ? `Name: ${formData.name}\nCompany: ${formData.company}\nRole: ${formData.role}\n\nDetails: ${formData.message}`
-      : `Name: ${formData.name}\nBackground: ${formData.background}\n\nLooking for: ${formData.message}`;
-
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setFormData(isHiring ? emptyHiring : emptyTalent);
-    setErrors({});
-  };
-
-  return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <input
-        className={`contact-input ${errors.name ? "has-error" : ""}`}
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value={formData.name}
-        onChange={handleChange}
-      />
-
-      {isHiring ? (
-        <>
-          <input
-            className={`contact-input ${errors.company ? "has-error" : ""}`}
-            type="text"
-            name="company"
-            placeholder="Company Name"
-            value={formData.company}
-            onChange={handleChange}
-          />
-          <input
-            className={`contact-input ${errors.role ? "has-error" : ""}`}
-            type="text"
-            name="role"
-            placeholder="Role you're hiring for"
-            value={formData.role}
-            onChange={handleChange}
-          />
-        </>
-      ) : (
-        <input
-          className={`contact-input ${errors.background ? "has-error" : ""}`}
-          type="text"
-          name="background"
-          placeholder="Current Role / Background"
-          value={formData.background}
-          onChange={handleChange}
-        />
-      )}
-
-      <textarea
-        className={`contact-input contact-textarea ${errors.message ? "has-error" : ""}`}
-        name="message"
-        placeholder={isHiring ? "Tell us more" : "What you're looking for"}
-        value={formData.message}
-        onChange={handleChange}
-      />
-
-      <button className="contact-submit" type="submit">
-        Send Enquiry &rarr;
-      </button>
-    </form>
   );
 }
 
@@ -214,50 +101,6 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="contact-paths" data-cursor-theme="dark">
-          <motion.div
-            className="contact-path"
-            initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? -20 : -48 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, ease }}
-          >
-            <p className="contact-path-label">For Companies</p>
-            <h2>
-              Looking to build
-              <br />
-              your team?
-            </h2>
-            <p className="contact-path-copy">
-              Tell us about your company, the role, and what you&apos;re trying to build.
-              We&apos;ll take it from there.
-            </p>
-            <ContactForm type="hiring" />
-          </motion.div>
-
-          <div className="contact-path-divider" />
-
-          <motion.div
-            className="contact-path"
-            initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 20 : 48 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, ease }}
-          >
-            <p className="contact-path-label">For Talent</p>
-            <h2>
-              Looking for your
-              <br />
-              next move?
-            </h2>
-            <p className="contact-path-copy">
-              Tell us where you are and where you want to go. We&apos;ll help you figure out the
-              rest.
-            </p>
-            <ContactForm type="talent" />
-          </motion.div>
-        </section>
-
         <section className="contact-direct" data-cursor-theme="light">
           <p className="contact-direct-label">Or Reach Us Directly</p>
           <div className="contact-direct-grid">
@@ -322,15 +165,6 @@ export default function Contact() {
             <SocialLinks className="contact-socials" showLabels />
           </div>
 
-          <div className="contact-find-col">
-            <p className="contact-find-label">Ikehu&apos;s Ambition</p>
-            <h2>
-              To become
-              <br />
-              a verb.
-            </h2>
-            <p>Have you been Ikehu-ed?</p>
-          </div>
         </motion.section>
 
         <div className="contact-bottom-strip" data-cursor-theme="dark">

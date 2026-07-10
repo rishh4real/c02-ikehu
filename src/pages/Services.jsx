@@ -107,7 +107,7 @@ const pageContent = {
     headlineOne: "For companies.",
     headlineTwo: "Build with care.",
     copy:
-      "For founders, investors, CEOs, and leadership teams making critical hiring and organisational decisions.",
+      "For Founders, Investors, CEOs, and Leadership Teams making critical hiring and organisational decisions.",
     items: companyServices,
     groupLabel: "How we help companies",
     previous: { href: "/about", label: "The Team" },

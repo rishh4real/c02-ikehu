@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import MobileNav from "../components/MobileNav.jsx";
-import WordMorph from "../components/WordMorph.jsx";
+import { useTextScramble } from "../hooks/useTextScramble.js";
 
 const ease = [0.25, 0.1, 0.25, 1];
 
@@ -9,11 +9,11 @@ const faqData = {
   general: [
     {
       q: "What is Ikehu?",
-      a: "Ikehu is a founder-led talent advisory firm built for founders, investors, and professionals. We operate at the intersection of search, strategic advisory, and talent intelligence.",
+      a: "Ikehu is a Founder-led talent advisory firm built for Founders, Investors, and Professionals. We operate at the intersection of search, strategic advisory, and talent intelligence.",
     },
     {
       q: "Who are the people behind Ikehu?",
-      a: "Ikehu is led by Svetleena and Abhigyan, supported by a small research team. The work is founder-led, high-touch, and deeply involved.",
+      a: "Ikehu is led by Svetleena and Abhigyan, supported by a team. The work is high-touch and deeply involved.",
     },
     {
       q: "Is Ikehu a large agency?",
@@ -34,8 +34,8 @@ const faqData = {
       a: "We work closely with you as partners — sometimes running a search, sometimes helping you define what's actually needed first.",
     },
     {
-      q: "Do You also work with early-stage startups?",
-      a: "Yes. We love to work with founder-led businesses, growth-stage startups, and companies in transition or scale-up mode.",
+      q: "Do you also work with early-stage startups?",
+      a: "Yes. We love to work with Founder-led businesses, Growth-stage Startups, and Companies in transition or scale-up mode.",
     },
     {
       q: "How do we get started?",
@@ -64,6 +64,18 @@ const categoryLabels = {
   companies: "For Companies",
   talent: "For Talent",
 };
+
+function ScrambleLine({ chars }) {
+  return (
+    <span className="faq-scramble-line" aria-label={chars.join("")}>
+      {chars.map((char, index) => (
+        <span key={`${char}-${index}`} className="scramble-char">
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 function AccordionItem({ question, answer, index, isOpen, onToggle }) {
   return (
@@ -99,11 +111,21 @@ export default function FAQ() {
   const [activeTab, setActiveTab] = useState("general");
   const [openIdx, setOpenIdx] = useState(null);
   const [scrollHeader, setScrollHeader] = useState(false);
+  const [scrambleEnabled, setScrambleEnabled] = useState(false);
+  const headline = useTextScramble("Questions we get asked.", {
+    duration: 850,
+    interval: 32,
+    enabled: scrambleEnabled,
+  });
 
   useEffect(() => {
+    const timer = window.setTimeout(() => setScrambleEnabled(true), 120);
     const handleScroll = () => setScrollHeader(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const currentFaqs = faqData[activeTab] || [];
@@ -131,10 +153,7 @@ export default function FAQ() {
           <div className="faq-hero-inner">
             <p className="faq-hero-label">FAQ</p>
             <h1 className="faq-hero-headline">
-              <WordMorph
-                targetWords={["Questions", "we get asked."]}
-                triggerOnMount={true}
-              />
+              <ScrambleLine chars={headline.output} />
             </h1>
             <p className="faq-hero-copy">
               If you don't find what you're looking for, just reach out.

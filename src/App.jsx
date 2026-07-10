@@ -44,7 +44,7 @@ const homeWorkSteps = [
 ];
 
 const homeWhoItems = [
-  "Founder-led Businesses",
+  "Founder-Led Businesses",
   "Growth Stage Start-Ups",
   "Investors & Portfolio Companies",
   "Teams Building Leadership Capability",
@@ -432,7 +432,7 @@ export default function App() {
               </div>
               <div className="story-detail">
                 <p>
-                  One that is founder-led, deeply involved, and genuinely invested in helping
+                  One that is Founder-led, deeply involved, and genuinely invested in helping
                   businesses build capability, culture, and leadership.
                 </p>
                 <p>
