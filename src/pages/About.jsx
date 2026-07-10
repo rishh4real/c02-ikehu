@@ -53,7 +53,7 @@ export default function About() {
   const [heroEnabled, setHeroEnabled] = useState(false);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-  const heroLineOne = useTextScramble("The Team", {
+  const heroLineOne = useTextScramble("We are Ikehu. The Talent Edit.", {
     duration: 900,
     startDelay: 0,
     interval: 35,
@@ -98,7 +98,6 @@ export default function About() {
       <main>
         <section className="about-v2-hero">
           <div className="about-v2-hero-inner">
-            <p className="about-v2-hero-label">The Team</p>
             <div className="about-v2-hero-copy">
               <h1>
                 <ScrambleLine chars={heroLineOne.output} />
