@@ -53,15 +53,9 @@ export default function About() {
   const [heroEnabled, setHeroEnabled] = useState(false);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-  const heroLineOne = useTextScramble("We are Ikehu.", {
+  const heroLineOne = useTextScramble("The Team", {
     duration: 900,
     startDelay: 0,
-    interval: 35,
-    enabled: heroEnabled,
-  });
-  const heroLineTwo = useTextScramble("The Talent Edit.", {
-    duration: 900,
-    startDelay: 140,
     interval: 35,
     enabled: heroEnabled,
   });
@@ -108,11 +102,12 @@ export default function About() {
             <div className="about-v2-hero-copy">
               <h1>
                 <ScrambleLine chars={heroLineOne.output} />
-                <ScrambleLine chars={heroLineTwo.output} />
               </h1>
-              <p>
-                Building teams is personal. We treat it that way.
-              </p>
+              <div className="about-v2-hero-ambition">
+                <span>Ikehu&apos;s Ambition</span>
+                <strong>To Become a Verb.</strong>
+                <em>Have you been Ikehu-ed?</em>
+              </div>
             </div>
           </div>
         </section>
@@ -206,11 +201,11 @@ export default function About() {
               </div>
               <div className="about-v2-person-text is-dark">
                 <p>
-                  Deep operator experience across Media, Digital, and Sports. With stints at
+                  Deep operator experience across Media, Digital, and Sports. Stints at
                   Google, Jio Hotstar, World Sport Group, and GroupM (WPP Media).
                 </p>
                 <p>
-                  Am a magic realist. Exploring food, culture and technology in this world. I
+                  Am a magic realist. Exploring food, culture and technology across the world. I
                   also run a sports business called Zupotsu. Can play and watch sports anytime,
                   sometimes together.
                 </p>
@@ -292,7 +287,7 @@ export default function About() {
               <br />
               We treat it that way.
             </h2>
-            <p className="about-v2-ambition-subline">Have you been Ikehu-ed!</p>
+            <p className="about-v2-ambition-subline">Have you been Ikehu-ed?</p>
           </motion.div>
         </section>
 

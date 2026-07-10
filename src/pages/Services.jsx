@@ -41,7 +41,7 @@ const talentServices = [
   {
     number: "01",
     title: "Create Your Personal Brand",
-    summary: "Helping your value and story become easier to see.",
+    summary: "Helping your Value and Story become easier to see.",
     bullets: [
       "Brand Discovery: understanding who you are and what you want",
       "Identifying unique strengths, values, and skills that set you apart",
