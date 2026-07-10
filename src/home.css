@@ -2443,12 +2443,12 @@ video {
 
 .contact-direct {
   padding: 6rem 7vw;
-  background: var(--yellow);
+  background: var(--black);
   text-align: center;
 }
 
 .contact-direct-label {
-  color: var(--muted-dark);
+  color: var(--yellow);
 }
 
 .contact-direct-grid {
@@ -2468,7 +2468,7 @@ video {
 
 .contact-person h3 {
   margin: 0;
-  color: var(--black);
+  color: var(--off-white);
   font-family: "Playfair Display", serif;
   font-size: 24px;
   font-style: italic;
@@ -2478,7 +2478,7 @@ video {
 .contact-role,
 .contact-note {
   margin: 0;
-  color: var(--muted-dark);
+  color: #888;
   font-size: 13px;
   line-height: 1.6;
 }
@@ -2493,7 +2493,7 @@ video {
 }
 
 .contact-person a {
-  color: var(--black);
+  color: var(--off-white);
   font-size: 15px;
   line-height: 1.8;
 }
@@ -2503,13 +2503,13 @@ video {
 }
 
 .contact-direct-divider {
-  background: rgba(10, 10, 10, 0.35);
+  background: rgba(232, 197, 71, 0.55);
 }
 
 .contact-find {
   display: block;
   padding: 6rem 7vw;
-  background: var(--black);
+  background: var(--yellow);
 }
 
 .contact-find-col {
@@ -2538,6 +2538,29 @@ video {
 .contact-socials a:hover {
   border-color: var(--yellow);
   color: var(--off-white);
+}
+
+.contact-find .contact-find-label {
+  color: var(--muted-dark);
+}
+
+.contact-find h2 {
+  color: var(--black);
+}
+
+.contact-find p {
+  color: var(--muted-dark);
+}
+
+.contact-find .contact-socials a {
+  border-color: rgba(10, 10, 10, 0.4);
+  color: var(--black);
+}
+
+.contact-find .contact-socials a:hover {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--yellow);
 }
 
 .contact-bottom-strip {

@@ -40,6 +40,19 @@ const companyServices = [
 const talentServices = [
   {
     number: "01",
+    title: "Create Your Personal Brand",
+    summary: "Helping your value and story become easier to see.",
+    bullets: [
+      "Brand Discovery: understanding who you are and what you want",
+      "Identifying unique strengths, values, and skills that set you apart",
+      "Crafting a compelling unified narrative across LinkedIn, social, and professional collaterals",
+      "Helping articulate the work you have done beyond what shows on your CV",
+    ],
+    email: "abhigyan@ikehu.in",
+    subject: "Personal Brand Enquiry",
+  },
+  {
+    number: "02",
     title: "Search Support",
     summary: "Identifying contexts where you will do your best work.",
     bullets: [
@@ -52,7 +65,7 @@ const talentServices = [
     subject: "Search Support Enquiry",
   },
   {
-    number: "02",
+    number: "03",
     title: "Coaching",
     summary: "Working through inflection points - growth, change, reinvention.",
     bullets: [

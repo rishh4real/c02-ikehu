@@ -102,7 +102,7 @@ export default function Contact() {
         </section>
 
         <section className="contact-direct" data-cursor-theme="light">
-          <p className="contact-direct-label">Or Reach Us Directly</p>
+          <p className="contact-direct-label">Reach Us Directly</p>
           <div className="contact-direct-grid">
             <motion.div
               className="contact-person"

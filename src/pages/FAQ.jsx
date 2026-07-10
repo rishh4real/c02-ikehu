@@ -48,8 +48,8 @@ const faqData = {
       a: "Yes. We work with professionals navigating growth, change, and reinvention — helping identify the right context, not just the next title.",
     },
     {
-      q: "Is this a job placement service?",
-      a: "Not in the traditional sense. We selectively connect you to teams and leaders we understand deeply — only where there's genuine fit. We also offer coaching and sounding-board support.",
+      q: "Can you help me in building my personal brand?",
+      a: "Yes, we can. Connect with us to know more.",
     },
     {
       q: "How do I get in touch?",

@@ -1,5 +1,5 @@
-import { motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import MobileNav from "../components/MobileNav.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
 import { useTextScramble } from "../hooks/useTextScramble.js";
@@ -51,9 +51,6 @@ function ScrambleLine({ chars }) {
 export default function About() {
   const [solidHeader, setSolidHeader] = useState(false);
   const [heroEnabled, setHeroEnabled] = useState(false);
-  const [ambitionEnabled, setAmbitionEnabled] = useState(false);
-  const ambitionRef = useRef(null);
-  const ambitionInView = useInView(ambitionRef, { once: true, amount: 0.45 });
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const heroLineOne = useTextScramble("We are Ikehu.", {
@@ -68,19 +65,6 @@ export default function About() {
     interval: 35,
     enabled: heroEnabled,
   });
-  const ambitionLineOne = useTextScramble("To Become", {
-    duration: 900,
-    startDelay: 0,
-    interval: 35,
-    enabled: ambitionEnabled,
-  });
-  const ambitionLineTwo = useTextScramble("a Verb.", {
-    duration: 900,
-    startDelay: 150,
-    interval: 35,
-    enabled: ambitionEnabled,
-  });
-
   useEffect(() => {
     const timer = window.setTimeout(() => setHeroEnabled(true), 150);
     const handleScroll = () => {
@@ -94,12 +78,6 @@ export default function About() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    if (ambitionInView) {
-      setAmbitionEnabled(true);
-    }
-  }, [ambitionInView]);
 
   return (
     <motion.div
@@ -133,8 +111,7 @@ export default function About() {
                 <ScrambleLine chars={heroLineTwo.output} />
               </h1>
               <p>
-                Building teams is personal. We treat it that way. Ikehu is a boutique talent
-                advisory firm partnering with companies to build thought, leadership and teams.
+                Building teams is personal. We treat it that way.
               </p>
             </div>
           </div>
@@ -301,7 +278,7 @@ export default function About() {
           </div>
         </FadeUpSection>
 
-        <section className="about-v2-ambition" ref={ambitionRef}>
+        <section className="about-v2-ambition">
           <motion.div
             className="about-v2-ambition-inner"
             initial={{ opacity: 0, y: 32 }}
@@ -309,12 +286,13 @@ export default function About() {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease }}
           >
-            <p className="about-v2-ambition-label">Ikehu&apos;s Ambition</p>
+            <p className="about-v2-ambition-label">The Talent Edit</p>
             <h2 className="about-v2-ambition-title">
-              <ScrambleLine chars={ambitionLineOne.output} />
-              <ScrambleLine chars={ambitionLineTwo.output} />
+              Building teams is personal.
+              <br />
+              We treat it that way.
             </h2>
-            <p className="about-v2-ambition-subline">Have you been Ikehu-ed?</p>
+            <p className="about-v2-ambition-subline">Have you been Ikehu-ed!</p>
           </motion.div>
         </section>
 
