@@ -105,7 +105,6 @@ export default function About() {
               </h1>
               <div className="about-v2-hero-ambition">
                 <strong>Ikehu ambition is to become a verb.</strong>
-                <em>Have you been Ikehu-ed?</em>
               </div>
             </div>
           </div>
