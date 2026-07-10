@@ -40,9 +40,13 @@ function ScrambleLine({ chars }) {
   return (
     <span className="about-v2-scramble-line" aria-label={chars.join("")}>
       {chars.map((char, index) => (
-        <span key={`${char}-${index}`} className="scramble-char">
-          {char === " " ? "\u00A0" : char}
-        </span>
+        char === "\n" ? (
+          <br key={`br-${index}`} />
+        ) : (
+          <span key={`${char}-${index}`} className="scramble-char">
+            {char === " " ? "\u00A0" : char}
+          </span>
+        )
       ))}
     </span>
   );
@@ -53,7 +57,7 @@ export default function About() {
   const [heroEnabled, setHeroEnabled] = useState(false);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-  const heroLineOne = useTextScramble("We are Ikehu. The Talent Edit.", {
+  const heroLineOne = useTextScramble("We are Ikehu.\nThe Talent Edit.", {
     duration: 900,
     startDelay: 0,
     interval: 35,
