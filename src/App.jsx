@@ -8,6 +8,7 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import FAQ from "./pages/FAQ.jsx";
 import Services from "./pages/Services.jsx";
+import { trackEvent, trackPageView } from "./analytics.js";
 import { useTextScramble } from "./hooks/useTextScramble.js";
 
 const ease = [0.25, 0.1, 0.25, 1];
@@ -235,6 +236,7 @@ export default function App() {
     return normalized;
   };
   const [route, setRoute] = useState(normalizePath(window.location.pathname));
+  const hasTrackedInitialRoute = useRef(false);
   const isAbout = route === "/about";
   const isFaq = route === "/faq";
   const isContact = route === "/contact";
@@ -245,6 +247,74 @@ export default function App() {
     const handlePopstate = () => setRoute(normalizePath(window.location.pathname));
     window.addEventListener("popstate", handlePopstate);
     return () => window.removeEventListener("popstate", handlePopstate);
+  }, []);
+
+  useEffect(() => {
+    if (!hasTrackedInitialRoute.current) {
+      hasTrackedInitialRoute.current = true;
+      return;
+    }
+
+    trackPageView(route);
+  }, [route]);
+
+  useEffect(() => {
+    const handleTrackedClick = (event) => {
+      const element = event.target.closest?.("a[href], button");
+      if (!element) return;
+
+      const href = element.getAttribute("href") || "";
+      const labelText =
+        element.innerText?.replace(/\s+/g, " ").trim() ||
+        element.getAttribute("aria-label") ||
+        element.getAttribute("title") ||
+        "Unlabelled click";
+      const eventBase = {
+        link_text: labelText.slice(0, 100),
+        link_url: href,
+        page_path: window.location.pathname,
+      };
+
+      if (href.startsWith("mailto:")) {
+        trackEvent("contact_email_click", eventBase);
+        return;
+      }
+
+      if (href.startsWith("tel:")) {
+        trackEvent("contact_phone_click", eventBase);
+        return;
+      }
+
+      if (element.closest(".social-links")) {
+        trackEvent("social_link_click", eventBase);
+        return;
+      }
+
+      if (element.closest(".main-nav") || element.closest(".mobile-menu-panel")) {
+        trackEvent("navigation_click", eventBase);
+        return;
+      }
+
+      if (
+        element.closest(".services-start-actions") ||
+        element.closest(".faq-cta-links") ||
+        element.closest(".contact-direct") ||
+        element.closest(".about-v2-bottom-strip") ||
+        element.closest(".services-bottom-strip") ||
+        element.closest(".faq-nav-strip") ||
+        element.closest(".contact-bottom-strip")
+      ) {
+        trackEvent("cta_click", eventBase);
+        return;
+      }
+
+      if (element.closest(".faq-tabs") || element.closest(".faq-question")) {
+        trackEvent("faq_interaction", eventBase);
+      }
+    };
+
+    document.addEventListener("click", handleTrackedClick);
+    return () => document.removeEventListener("click", handleTrackedClick);
   }, []);
 
   const performNavigate = (href) => {
